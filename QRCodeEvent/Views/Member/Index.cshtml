@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "จัดการข้อมูลสมาชิก";
 }
+
     <div class="card">
         <div class="card-header">
             <h5>รายการข้อมูลสมาชิก</h5>
@@ -32,71 +33,71 @@
             </form>
         </div>
     </div>
+    <div class="card" style="margin-top:40px;">
+        <div class="card-header">
+            <h5>รายการข้อมูลสมาชิก</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ชื่อ - นามสกุล</th>
+                        <th scope="col">เพศ</th>
+                        <th scope="col" class="text-center">สถานะ</th>
+                        <th scope="col">สร้างข้อมูลเมื่อ</th>
+                        <th scope="col">แก้ไขข้อมูลล่าสุดเมื่อ</th>
 
-<div class="card" style="margin-top:40px;">
-    <div class="card-header">
-        <h5>รายการข้อมูลสมาชิก</h5>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>สมชาย ใจดี</td>
+                        <td>ชาย</td>
+                        <td class="text-center">
+                            <a class="btn btn-success" style="color:white"><i class="fa fa-check"></i> เข้าร่วมงานแล้ว</a>
+                        </td>
+                        <td>
+                            @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
+                        </td>
+                        <td>
+                            @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>สมศรี ดีเสมอ</td>
+                        <td>ชาย</td>
+                        <td class="text-center">
+                            <a class="btn btn-danger" style="color:white"><i class="fa fa-window-close"></i> ยังไม่เข้าร่วมงาน</a>
+                        </td>
+                        <td>
+                            @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
+                        </td>
+                        <td>
+                            @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>สมศักดิ์ รักดี</td>
+                        <td>ชาย</td>
+                        <td class="text-center">
+                            <a class="btn btn-success" style="color:white"><i class="fa fa-check"></i> เข้าร่วมงานแล้ว</a>
+                        </td>
+                        <td>
+                            @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
+                        </td>
+                        <td>
+                            @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    
-    <div class="card-body">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">ชื่อ - นามสกุล</th>
-                    <th scope="col">เพศ</th>
-                    <th scope="col" class="text-center">สถานะ</th>
-                    <th scope="col">สร้างข้อมูลเมื่อ</th>
-                    <th scope="col">แก้ไขข้อมูลล่าสุดเมื่อ</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>สมชาย ใจดี</td>
-                    <td>ชาย</td>
-                    <td class="text-center">
-                        <a class="btn btn-success" style="color:white"><i class="fa fa-check"></i> เข้าร่วมงานแล้ว</a>
-                    </td>
-                    <td>
-                        @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
-                    </td>
-                    <td>
-                        @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>สมศรี ดีเสมอ</td>
-                    <td>ชาย</td>
-                    <td class="text-center">
-                        <a class="btn btn-danger" style="color:white"><i class="fa fa-window-close"></i> ยังไม่เข้าร่วมงาน</a>
-                    </td>
-                    <td>
-                        @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
-                    </td>
-                    <td>
-                        @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>สมศักดิ์ รักดี</td>
-                    <td>ชาย</td>
-                    <td class="text-center">
-                        <a class="btn btn-success" style="color:white"><i class="fa fa-check"></i> เข้าร่วมงานแล้ว</a>
-                    </td>
-                    <td>
-                        @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
-                    </td>
-                    <td>
-                        @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+
 
 
