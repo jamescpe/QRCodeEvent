@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="eventIndex">
+    <div class="card">
+        <div class="card-header">
+            <h5>Scan your QRCODE here</h5>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-primary" @@click="camera = !camera">
+                            {{ buttonCameraText }}
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12" style="text-align:center">
+                        <qrcode-stream v-show="camera" @@init="onInit" @@detect="onDetect" :track="false" :camera="camera ? 'front' : 'off' " style="padding:50px"></qrcode-stream>
+                        <img v-show="!camera" src="~/image/close_the_camera.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Checked In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ empName }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        Vue.use(VueQrcodeReader);
+        var indexVM = new Vue({
+            el: "#eventIndex",
+            data: {
+                empName: "",
+                camera: false
+            },
+            methods: {
+                async onInit(promise) {
+                    // show loading indicator
+                    try {
+                        await promise
+                        // successfully initialized
+                    } catch (error) {
+                        if (error.name === 'NotAllowedError') {
+                            // user denied camera access permisson
+                        } else if (error.name === 'NotFoundError') {
+                            // no suitable camera device installed
+                        } else if (error.name === 'NotSupportedError') {
+                            // page is not served over HTTPS (or localhost)
+                        } else if (error.name === 'NotReadableError') {
+                            // maybe camera is already in use
+                        } else if (error.name === 'OverconstrainedError') {
+                            // did you requested the front camera although there is none?
+                        } else if (error.name === 'StreamApiNotSupportedError') {
+                            // browser seems to be lacking features
+                        }
+                    } finally {
+                        // hide loading indicator
+                    }
+                },
+                async onDetect(promise) {
+                    try {
+                        const {
+                            imageData,    // raw image data of image/frame
+                            content,      // decoded String
+                            location      // QR code coordinates
+                        } = await promise
+
+                        if (content.includes("http://") || content.includes("https://")) {
+                            $('#exampleModalCenter').modal('show')
+                            this.empName = content
+                        }
+                        //console.log(imageData)
+                        //console.log(content)
+                        //console.log(location)
+                    } catch (error) {
+                    }
+                }
+            },
+            mounted() {
+            },
+            computed: {
+                buttonCameraText() {
+                    return this.camera ? 'Close Camera' : 'Open Camera '
+                }
+            }
+        })
+    </script>
+}
+
+
